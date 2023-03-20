@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Button,
   Form,
-  FormFeedback,
   FormGroup,
   Input,
   Label,
@@ -12,8 +11,32 @@ import {
   ModalHeader,
 } from "reactstrap";
 
-const UserModel = () => {
+const UserModel = (props) => {
+  
+  const { userData, setData, data, index } = props;
+
   const [modal, setModal] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: userData.name,
+    email: userData.email,
+    phone: userData.phone,
+    website: userData.website,
+  });
+
+  const onSubmit = (id) => {
+    const temp = [...data];
+    const updatedData = data.filter((result) => result.id === id)[0];
+
+    if (formData.name && formData.email && formData.phone && formData.website) {
+      temp[index] = {
+        ...updatedData,
+        ...formData,
+      };
+      setData(temp);
+      toggle();
+    }
+  };
 
   const toggle = () => setModal(!modal);
 
@@ -23,7 +46,7 @@ const UserModel = () => {
         <i aria-label="icon: edit" className="icon-decoration">
           <svg
             viewBox="64 64 896 896"
-            class=""
+            className=""
             data-icon="edit"
             width="1em"
             height="1em"
@@ -38,21 +61,25 @@ const UserModel = () => {
         <ModalHeader toggle={toggle}>Basic Modal</ModalHeader>
 
         <ModalBody>
-          <Form>
+          <Form onSubmit={(e) => e.preventDefault()}>
             <FormGroup className="forms">
               <div>
                 <Label className="form-lable" for="exampleEmail">
                   <span className="requiredField">*</span>Name:
                 </Label>
                 <div className="form-validate">
-                  <Input valid />
-                  <FormFeedback valid>
-                    Sweet! that name is available
-                  </FormFeedback>
+                  <Input
+                    defaultValue={userData.name}
+                    name="name"
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    required
+                  />
                 </div>
-
-                {/* <Input invalid />
-                <FormFeedback>Oh noes! that name is already taken</FormFeedback> */}
               </div>
             </FormGroup>
 
@@ -62,15 +89,20 @@ const UserModel = () => {
                   <span className="requiredField">*</span>Email:
                 </Label>
                 <div className="form-validate">
-                <Input valid />
-                <FormFeedback valid>Sweet! that name is available</FormFeedback>
+                  <Input
+                    defaultValue={userData.email}
+                    name="email"
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    required
+                  />
                 </div>
-
-                {/* <Input invalid />
-                <FormFeedback>Oh noes! that name is already taken</FormFeedback> */}
               </div>
             </FormGroup>
-
 
             <FormGroup className="forms">
               <div>
@@ -78,15 +110,20 @@ const UserModel = () => {
                   <span className="requiredField">*</span>Phone:
                 </Label>
                 <div className="form-validate">
-                <Input valid />
-                <FormFeedback valid>Sweet! that name is available</FormFeedback>
+                  <Input
+                    defaultValue={userData.phone}
+                    name="phone"
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    required
+                  />
                 </div>
-
-                {/* <Input invalid />
-                <FormFeedback>Oh noes! that name is already taken</FormFeedback> */}
               </div>
             </FormGroup>
-
 
             <FormGroup className="forms">
               <div>
@@ -94,28 +131,34 @@ const UserModel = () => {
                   <span className="requiredField">*</span>Website:
                 </Label>
                 <div className="form-validate">
-                <Input valid />
-                <FormFeedback valid>Sweet! that name is available</FormFeedback>
+                  <Input
+                    defaultValue={userData.website}
+                    name="website"
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                    required
+                  />
                 </div>
-
-                {/* <Input invalid />
-                <FormFeedback>Oh noes! that name is already taken</FormFeedback> */}
               </div>
             </FormGroup>
-
-
-           
+            <ModalFooter>
+              <Button color="secondary" onClick={toggle}>
+                Cancel
+              </Button>{" "}
+              <Button
+                type="submit"
+                color="primary"
+                onClick={() => onSubmit(userData.id)}
+              >
+                Ok
+              </Button>
+            </ModalFooter>
           </Form>
         </ModalBody>
-
-        <ModalFooter>
-        <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>{" "}
-          <Button color="primary" onClick={toggle}>
-            Ok
-          </Button>
-        </ModalFooter>
       </Modal>
     </div>
   );

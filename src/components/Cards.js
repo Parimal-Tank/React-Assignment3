@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
 import UserCard from "./UserCard";
 import { Row } from "reactstrap";
@@ -17,24 +16,19 @@ const Cards = () => {
     loadData();
   }, []);
 
-  console.log("This is Data", data);
-
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClick = () => {
-   
-      setIsActive(current => !current );
-      // setData([...data, userData])
-    }
-
-  // console.log('isActive Status' , isActive);
-
   return (
     <div className="m-2">
       <Row className="gx-5">
         {data &&
-          data.map((user) => {
-            return <UserCard data={{ user }} isActive={isActive} handleClick={handleClick} />;
+          data.map((user, index) => {
+            return (
+              <UserCard
+                data={{ user }}
+                setData={setData}
+                allData={data}
+                index={index}
+              />
+            );
           })}
       </Row>
     </div>

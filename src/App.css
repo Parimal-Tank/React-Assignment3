@@ -1,66 +1,67 @@
-*{
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.cards{
-   width: 100%;
+.cards {
+  width: 100%;
 }
 
-.cardHeadImage{
-   width: 200px;
-   height: 200px;
-   background-color: #F8F8F8;
+.cardHeadImage {
+  width: 200px;
+  height: 200px;
+  background-color: #f8f8f8;
 }
 
 .cardfooter > div {
-   display: flex;
-   justify-content: center;
-   width: 33.33% !important ; 
+  display: flex;
+  justify-content: center;
+  width: 33.33% !important ;
 }
 
-.edit-btn{
-   text-decoration: none !important;
+.edit-btn {
+  text-decoration: none !important;
 }
 
-.icon-decoration{
-   font-size: 18px;
-   color: #949494;
+.icon-decoration {
+  font-size: 18px;
+  color: #949494;
 }
 
-.heart-decoration{
-   /* color : rgb(255, 0, 0); */
-   font-size: 20px;
+.heart-decoration {
+  /* color : rgb(255, 0, 0); */
+  font-size: 20px;
 }
 
 .contact-info > div {
-    display: flex;
+  display: flex;
 }
 
 .contact-info > div > h6 {
-   padding-left: 10px;
+  padding-left: 10px;
 }
 
-.model-btn:hover{
-   color: #949494;
+.model-btn:hover {
+  color: #949494;
 }
 
-.requiredField{
-   color: red;
+.requiredField {
+  color: red;
 }
 
-.forms > div{
-   display: flex;
-   width: 100%;
+.forms > div {
+  display: flex;
+  width: 100%;
 }
 
-.form-lable{
+.form-lable {
   flex-basis: 30%;
   text-align: end;
-  padding-right: 10px ;
+  padding-right: 10px;
 }
 
-.form-validate{
-   flex-basis: 70%;
+.form-validate {
+  flex-basis: 70%;
 }
